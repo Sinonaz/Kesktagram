@@ -1,3 +1,4 @@
+// Случайное число
 const getRandomInt = function (min, max) {
   if (min < 0 || max < 0) {
     return -1;
@@ -10,6 +11,18 @@ const getRandomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const stringCount = function (text, sign) {
+getRandomInt(1, 10);
+
+// Проверка строки
+const stringCount = (text, sign) => {
   return text.length <= sign ? true : false;
 };
+
+stringCount('Это проверочное сообщение', 140);
+
+// Случайный элемент массива
+const getRandomElementArr = (array) => {
+  return array[getRandomInt(0, array.length - 1)];
+};
+
+export { getRandomInt, stringCount, getRandomElementArr };
