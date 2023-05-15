@@ -1,3 +1,3 @@
-import { photos } from './data.js';
+import { renderPhotos } from './addPreview.js';
 
-console.log(photos);
+renderPhotos();

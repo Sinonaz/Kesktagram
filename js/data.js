@@ -1,18 +1,11 @@
 import { getRandomInt, getRandomElementArr } from './utils.js';
 
-const PHOTO_COUNT = 25;
-
-const Likes = {
+let photos = [];
+const numberOfPhotos = 25;
+const likes = {
   MIN: 15,
   MAX: 200,
 };
-
-const Comments = {
-  MIN: 1,
-  MAX: 5,
-};
-
-let photos = [];
 
 const names = [
   'Дима',
@@ -36,7 +29,7 @@ const descriptionPhoto = [
   'Из архива',
 ];
 
-const messages = [
+const comments = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра.',
@@ -47,33 +40,24 @@ const messages = [
   'Как можно было поймать такой неудачный момент?!',
 ];
 
-const addComments = () => {
-  const comments = [];
-
-  for (let i = 0; i < getRandomInt(Comments.MIN, Comments.MAX); i++) {
-    comments.push({
-      id: getRandomInt(0, 999),
-      avatar: 'img/avatar-' + getRandomInt(1, 6) + '.svg',
-      message: getRandomElementArr(messages),
-      name: getRandomElementArr(names),
-    });
-  }
-
-  return comments;
-};
-
 const addPhotos = () => {
-  for (let i = 0; i < PHOTO_COUNT; i++) {
+  for (let i = 0; i < numberOfPhotos; i++) {
     photos.push({
       id: i,
       url: 'photos/' + (i + 1) + '.jpg',
       description: getRandomElementArr(descriptionPhoto),
-      likes: getRandomInt(Likes.MIN, Likes.MAX),
-      comments: addComments(),
+      likes: getRandomInt(likes.MIN, likes.MAX),
+      comments: [
+        {
+          id: getRandomInt(0, 999),
+          avatar: 'img/avatar-' + getRandomInt(1, 6) + '.svg',
+          message: getRandomElementArr(comments),
+          name: getRandomElementArr(names),
+        },
+      ],
     });
   }
 };
-
 addPhotos();
 
-export { photos };
+export default photos;
